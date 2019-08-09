@@ -51,20 +51,35 @@ class SplashScreenActivity : AppCompatActivity() {
                 val dummyRocket = jsonObject.obj("rocket")
 
                 var payloads = mutableListOf<Payload>()
-                for(payload in dummyRocket?.obj("second_stage")?.array<JsonObject>("payloads")!!)
+                if(dummyRocket?.obj("second_stage")?.array<JsonObject>("payloads") == null)
                 {
-                    println(payload)
-                    /* val payloadObject = Payload(payload.string("payload_id")!!,
-                         payload.string("nationality")!!,
-                         payload.string("manufacturer")!!,
-                         10,//payload.int("payload_mass_kg")!!,
-                         payload.string("orbit")!!)
-                     payloads.add(payloadObject)*/
+                    println("No Payload")
                 }
+                else
+                {
+                    println("We hve payloads on this")
+                    for(payload in dummyRocket?.obj("second_stage")?.array<JsonObject>("payloads")!!) {
+                        println(payload)
+                        if (payload.string("payload_id") != null && payload.string("nationality") != null && payload.string(
+                                "manufacturer"
+                            ) != null && payload.int("payload_mass_kg") != null && payload.string("orbit") != null
+                        ) {
+                            val payloadObject = Payload(
+                                payload.string("payload_id")!!,
+                                payload.string("nationality")!!,
+                                payload.string("manufacturer")!!,
+                                payload.int("payload_mass_kg")!!,
+                                payload.string("orbit")!!
+                            )
+                            payloads.add(payloadObject)
+                        }
+                    }
+                }
+
                 val rocketObject: Rocket = Rocket(dummyRocket?.string("rocket_id")!!,
                     dummyRocket?.string("rocket_name")!!,
                     dummyRocket?.string("rocket_type")!!,
-                    payloads.toTypedArray())
+                    payloads)
 
                 if(jsonObject?.boolean("launch_success") != null) {
                     if (!jsonObject?.boolean("launch_success")!!) {

@@ -5,13 +5,13 @@ class Rocket
     var rocketID:String
     var rocketName:String
     var rocketType:String
-    var payloads:Array<Payload>
+    var payloads:MutableList<Payload>
 
     constructor(
         rocketID: String,
         rocketName: String,
         rocketType: String,
-        payloads:Array<Payload>
+        payloads:MutableList<Payload>
     ) {
         this.rocketID = rocketID
         this.rocketName = rocketName
