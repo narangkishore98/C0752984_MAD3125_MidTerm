@@ -22,8 +22,15 @@ class LoginActivity : AppCompatActivity() {
 
         if(sp.contains("Email"))
         {
-            edtEmail.setText(sp.getString("Email"))
+            edtEmail.setText(sp.getString("Email",""))
+            edtPassword.setText(sp.getString("Password",""))
 
+
+        }
+        if(!checkBox.isChecked)
+        {
+            editor.clear()
+            editor.commit()
         }
 
         db.readUsers()

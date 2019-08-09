@@ -9,6 +9,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_web.*
 
 class WebActivity : AppCompatActivity() {
@@ -42,8 +43,10 @@ class WebActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.settings.loadsImagesAutomatically = true
         webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
-        
-        webView.loadUrl(intent.getStringExtra("weblink"))
+
+
+        webView.loadUrl(intent.getStringExtra("weblink").substring(15))
+        Toast.makeText(this@WebActivity, "Opening ${intent.getStringExtra("weblink").substring(15)}", Toast.LENGTH_LONG).show()
 
 
 
