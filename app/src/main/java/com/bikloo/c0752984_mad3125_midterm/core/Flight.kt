@@ -5,7 +5,7 @@ import java.util.*
 class Flight {
     var flightNo:Int
     var missionName:String
-    var missionID:Array<Int>
+
     var launchYear:Short
     var launchDate:Date
     var rocket:Rocket
@@ -19,7 +19,7 @@ class Flight {
     constructor(
         flightNo: Int,
         missionName: String,
-        missionID: Array<Int>,
+
         launchYear: Short,
         launchDate: Date,
         rocket: Rocket,
@@ -32,7 +32,7 @@ class Flight {
     ) {
         this.flightNo = flightNo
         this.missionName = missionName
-        this.missionID = missionID
+
         this.launchYear = launchYear
         this.launchDate = launchDate
         this.rocket = rocket

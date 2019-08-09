@@ -7,6 +7,7 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Klaxon
 import com.beust.klaxon.Parser
 import com.bikloo.c0752984_mad3125_midterm.core.Failure
+import com.bikloo.c0752984_mad3125_midterm.core.Flight
 import com.bikloo.c0752984_mad3125_midterm.core.Rocket
 import com.bikloo.c0752984_mad3125_midterm.core.Site
 import org.json.JSONArray
@@ -68,6 +69,13 @@ class DashboardActivity : AppCompatActivity() {
                     val failureObject:Failure = Failure(dummyFailure?.int("time")!!,
                         dummyFailure?.string("reason")!!,
                         dummyFailure?.int("altitude"))
+
+                    //val dummyMissionID = jsonObject.array<Any>("mission_id")
+
+
+
+                    val flight = Flight(jsonObject?.int("flight_no")!!,
+                        )
                 }
 
             }
