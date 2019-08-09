@@ -60,7 +60,7 @@ class WebActivity : AppCompatActivity() {
         }
 
         override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-            view!!.loadUrl(url.trim())
+            view!!.loadUrl(url!!.trim())
             return true
         }
     }
