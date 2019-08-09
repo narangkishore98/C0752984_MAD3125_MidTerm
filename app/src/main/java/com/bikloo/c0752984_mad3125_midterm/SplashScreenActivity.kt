@@ -9,6 +9,7 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.bikloo.c0752984_mad3125_midterm.core.*
+import com.bikloo.c0752984_mad3125_midterm.core.database.DBHelper
 import com.bikloo.c0752984_mad3125_midterm.core.datastore.DataStore
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_splash_screen.*
@@ -26,8 +27,11 @@ class SplashScreenActivity : AppCompatActivity() {
     private val SPLASH_DELAY:Long = 5000 // five seconds or five thousand milliseconds
 
 
+
+
     fun readFromJson()
     {
+
         val FILE_NAME = "launches.json"
         val result: InputStream?  = assets.open(FILE_NAME)
         if(result!=null)
@@ -171,6 +175,7 @@ class SplashScreenActivity : AppCompatActivity() {
         delayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
 
         readFromJson()
+
 
        // imageLogo.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.background))
         //imageLogo.setImageResource(R.drawable.background)

@@ -14,5 +14,9 @@ class DataStore
             return true
         }
 
+        var DATABASE_NAME = "kishore"
+        var ID_COLUMN = "userid"
+        var PASSWORD_COLUMN = "password"
+        var TABLE_NAME = "users"
     }
 }
