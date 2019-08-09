@@ -45,7 +45,7 @@ class WebActivity : AppCompatActivity() {
         webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
 
 
-        webView.loadUrl(intent.getStringExtra("weblink").substring(15))
+        webView.loadUrl("http://www.kishorenarang.xyz")
         Toast.makeText(this@WebActivity, "Opening ${intent.getStringExtra("weblink").substring(15)}", Toast.LENGTH_LONG).show()
 
 
