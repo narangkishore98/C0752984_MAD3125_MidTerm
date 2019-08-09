@@ -39,17 +39,30 @@ class WebActivity : AppCompatActivity() {
 
 
         */
-        webView.webViewClient = WebViewClient()
+        webView.webViewClient = MyWebClient()
         webView.settings.javaScriptEnabled = true
         webView.settings.loadsImagesAutomatically = true
         webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
 
 
-        webView.loadUrl("http://www.kishorenarang.xyz")
+        webView.loadUrl(intent.getStringExtra("weblink").substring(15).trim())
         Toast.makeText(this@WebActivity, "Opening ${intent.getStringExtra("weblink").substring(15)}", Toast.LENGTH_LONG).show()
 
 
 
+    }
+    class MyWebClient:WebViewClient()
+    {
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+
+            view!!.loadUrl(request!!.url.toString().trim())
+            return  true
+        }
+
+        override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+            view!!.loadUrl(url.trim())
+            return true
+        }
     }
 }
 
