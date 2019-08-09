@@ -11,7 +11,7 @@ class Flight {
     var rocket:Rocket
     var site:Site
     var isLaunchSucceed:Boolean
-    var launchFailDetails:Failure
+    var launchFailDetails:Failure?
     var imgLink:String
     var readMoreLink:String
     var details:String
@@ -25,7 +25,7 @@ class Flight {
         rocket: Rocket,
         site: Site,
         isLaunchSucceed: Boolean,
-        launchFailDetails: Failure,
+        launchFailDetails: Failure?,
         imgLink: String,
         readMoreLink: String,
         details: String
