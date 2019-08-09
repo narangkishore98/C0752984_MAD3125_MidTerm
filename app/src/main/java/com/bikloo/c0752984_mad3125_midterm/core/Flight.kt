@@ -1,5 +1,6 @@
 package com.bikloo.c0752984_mad3125_midterm.core
 
+import java.time.LocalDate
 import java.util.*
 
 class Flight {
@@ -7,11 +8,12 @@ class Flight {
     var missionName:String
 
     var launchYear:Short
-    var launchDate:Date
+    var launchDate:LocalDate
     var rocket:Rocket
     var site:Site
     var isLaunchSucceed:Boolean
     var launchFailDetails:Failure?
+    var smallImageLink:String
     var imgLink:String
     var readMoreLink:String
     var details:String
@@ -21,11 +23,12 @@ class Flight {
         missionName: String,
 
         launchYear: Short,
-        launchDate: Date,
+        launchDate: LocalDate,
         rocket: Rocket,
         site: Site,
         isLaunchSucceed: Boolean,
         launchFailDetails: Failure?,
+        smallImageLink:String,
         imgLink: String,
         readMoreLink: String,
         details: String
@@ -39,6 +42,7 @@ class Flight {
         this.site = site
         this.isLaunchSucceed = isLaunchSucceed
         this.launchFailDetails = launchFailDetails
+        this.smallImageLink = smallImageLink
         this.imgLink = imgLink
         this.readMoreLink = readMoreLink
         this.details = details

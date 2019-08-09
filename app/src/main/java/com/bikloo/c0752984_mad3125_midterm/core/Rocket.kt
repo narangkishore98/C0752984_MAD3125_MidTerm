@@ -5,23 +5,17 @@ class Rocket
     var rocketID:String
     var rocketName:String
     var rocketType:String
-    var nationality:String
-    var manufacturer:String
-    var orbit:String
+    var payloads:Array<Payload>
 
     constructor(
         rocketID: String,
         rocketName: String,
         rocketType: String,
-        nationality: String,
-        manufacturer: String,
-        orbit: String
+        payloads:Array<Payload>
     ) {
         this.rocketID = rocketID
         this.rocketName = rocketName
         this.rocketType = rocketType
-        this.nationality = nationality
-        this.manufacturer = manufacturer
-        this.orbit = orbit
+        this.payloads = payloads
     }
 }
