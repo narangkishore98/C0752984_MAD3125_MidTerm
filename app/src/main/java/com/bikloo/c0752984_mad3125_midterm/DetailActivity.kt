@@ -10,6 +10,8 @@ import android.widget.*
 import com.bikloo.c0752984_mad3125_midterm.core.datastore.DataStore
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -34,17 +36,21 @@ class DetailActivity : AppCompatActivity() {
         {
             ifIsSucceed = "No (Click For Failure Details)"
         }
+        val date =   DataStore.flights[itemPosition].launchDate
+        val newFormat = DateTimeFormatter.ofPattern("E, dd-MMM-yyyy", Locale.ENGLISH)
+
         val array = arrayOf("Flight Number: ${DataStore.flights[itemPosition].flightNo}",
             "Launch Year: ${DataStore.flights[itemPosition].launchYear}",
             "Rocket Used: ${DataStore.flights[itemPosition].rocket.rocketName}",
             "Succeed: $ifIsSucceed",
             "Detail: ${DataStore.flights[itemPosition].details}",
             "Read More at : ${DataStore.flights[itemPosition].readMoreLink}",
-            "Site: ${DataStore.flights[itemPosition].site.siteCompleteName}"
+            "Site: ${DataStore.flights[itemPosition].site.siteCompleteName}",
+            "Launch Date: ${date.format(newFormat)}"
             )
 
         Glide.with(this).load(DataStore.flights[itemPosition].imgLink).into(detailImageView)
-        detailMissionName.text = DataStore.flights[itemPosition].missionName
+        detailMissionName.text = DataStore.flights[itemPosition].missionName + " (${DataStore.flights[itemPosition].launchYear}) "
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, array)
         detailListView.adapter = adapter
         detailListView.setOnItemClickListener { parent, view, position, l ->
