@@ -25,10 +25,19 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         DEFAULT = intent.getIntExtra("itemPosition",0)
         val itemPosition = DEFAULT
+        var ifIsSucceed = ""
+        if(DataStore.flights[itemPosition].isLaunchSucceed)
+        {
+            ifIsSucceed = "Yes"
+        }
+        else
+        {
+            ifIsSucceed = "No (Click For Failure Details)"
+        }
         val array = arrayOf("Flight Number: ${DataStore.flights[itemPosition].flightNo}",
             "Launch Year: ${DataStore.flights[itemPosition].launchYear}",
             "Rocket Used: ${DataStore.flights[itemPosition].rocket.rocketName}",
-            "Succeed: ${DataStore.flights[itemPosition].isLaunchSucceed}",
+            "Succeed: $ifIsSucceed",
             "Detail: ${DataStore.flights[itemPosition].details}",
             "Read More at : ${DataStore.flights[itemPosition].readMoreLink}",
             "Site: ${DataStore.flights[itemPosition].site.siteCompleteName}"
@@ -51,11 +60,38 @@ class DetailActivity : AppCompatActivity() {
                 2->
                 {
                     val dialogBuilder = AlertDialog.Builder(this@DetailActivity)
-                    dialogBuilder.setMessage("This is Dummy Text").setCancelable(false)
-                        .setPositiveButton("OK", DialogInterface.OnClickListener{dialogInterface, i -> finish() })
+                    var string = "Rocket ID: ${DataStore.flights[itemPosition].rocket.rocketID}\nRocket Name: ${DataStore.flights[itemPosition].rocket.rocketName}\nRocket Type: ${DataStore.flights[itemPosition].rocket.rocketType}"
+                    if(DataStore.flights[itemPosition].rocket.payloads.size==0)
+                    {
+                        string += "\n\nThis Rocket has No Payloads."
+                    }
+                    else
+                    {
+                        string += "\n\nThis Rocket Has Following Payloads"
+                        for(payload in DataStore.flights[itemPosition].rocket.payloads )
+                        {
+                            string += "\nPayload ID: ${payload.payloadID}\nManufacturer: ${payload.manufacturer}\nNationality: ${payload.nationality}\nMass: ${payload.mass}\nOrbit: ${payload.orbit}\n\n"
+                        }
+                    }
+                    dialogBuilder.setMessage(string).setCancelable(false)
+                        .setPositiveButton("OK", DialogInterface.OnClickListener{dialogInterface, i -> dialogInterface.cancel() })
                     val alert = dialogBuilder.create()
-                    alert.setTitle("Rocket Details For XXX")
+                    alert.setTitle("Rocket Details For ${DataStore.flights[itemPosition].missionName}")
                     alert.show()
+                }
+                3->
+                {
+                    if(!DataStore.flights[itemPosition].isLaunchSucceed)
+                    {
+                        val dialogBuilder = AlertDialog.Builder(this@DetailActivity)
+                        var string = "Time: ${DataStore.flights[itemPosition].launchFailDetails!!.timeSeconds}\nAltitude: ${DataStore.flights[itemPosition].launchFailDetails!!.altitude}\nReason: ${DataStore.flights[itemPosition].launchFailDetails!!.reason}"
+                        dialogBuilder.setMessage(string).setCancelable(false)
+                            .setPositiveButton("OK", DialogInterface.OnClickListener{dialogInterface, i -> dialogInterface.cancel() })
+                        val alert = dialogBuilder.create()
+                        alert.setTitle("Flight Failure Details For ${DataStore.flights[itemPosition].missionName}")
+                        alert.show()
+                    }
+
                 }
                 else ->
                 {
