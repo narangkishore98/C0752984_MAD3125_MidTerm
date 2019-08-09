@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-                android:orientation="horizontal"
+              android:layout_height="wrap_content"
+              android:id="@+id/cell"
+              android:orientation="horizontal"
               android:padding="5dp"
+
+              android:layout_marginBottom="3dp"
             >
 
     <ImageView
 
-            android:layout_width="190dp"
+            android:layout_width="279dp"
             android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageSmall"
             android:layout_weight="1"
 
@@ -17,11 +20,13 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="126dp" android:layout_weight="1">
+            android:paddingEnd="30dp"
+            android:paddingStart="30dp"
+            android:layout_height="189dp" android:layout_weight="1">
         <TextView
                 android:text="Dummy Mission Name"
                 android:layout_width="match_parent"
+                android:layout_marginTop="60dp"
                 android:layout_height="wrap_content" android:id="@+id/missionName" android:textSize="20sp"
                 android:textStyle="bold"/>
         <TextView
